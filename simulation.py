@@ -106,11 +106,11 @@ class Simulation:
 
             destination_direction = self.choose_direction(entry_direction)
 
-            segment_drive_time = np.random.normal(
-                loc=self.segment_drive_time_distribution, scale=1)
+            segment_drive_time = np.random.lognormal(
+                mean=self.segment_drive_time_distribution, sigma=0.1)
 
-            starting_drive_time = np.random.normal(
-                loc=self.starting_drive_time_distribution, scale=1)
+            starting_drive_time = np.random.lognormal(
+                mean=self.starting_drive_time_distribution, sigma=0.1)
 
             cars_list.append(Car(all_cars_time, time_to_force, entry_direction,
                              destination_direction, segment_drive_time, starting_drive_time))
