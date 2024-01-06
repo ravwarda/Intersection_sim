@@ -11,23 +11,24 @@ def execute_simulation():
     warm_up_time = 200
     # natężenie ilości aut na całym skrzyżowaniu (czym mniejsza wartosc tym wiecej aut)
     traffic_intensity = 5
-    # czas przejechania przez segment skrzyżowania
-    segment_drive_time = 3
+    # średnia dla rozkładu normalnego określająca czas przejechania przez segment skrzyżowania
+    segment_drive_time_distribution = 3
     # ile procent aut przyjeżdża z jednego kierunku drogi głównej
     percentage_cars_on_main_road = 0.3
     # natężenie częstości wymuszania pierwszeństwa
     force_intensity = 20
-    # dodatkowy czas na rozpoczęcie jazdy po zatrzymaniu
-    starting_drive_time = 5
+    # średnia dla rozkładu normalnego określająca czas na rozpoczęcie jazdy po zatrzymaniu
+    starting_drive_time_distribution = 5
 
-    sim = Simulation(sim_time, warm_up_time, traffic_intensity, segment_drive_time,
-                     percentage_cars_on_main_road, force_intensity, starting_drive_time)
+    sim = Simulation(sim_time, warm_up_time, traffic_intensity, segment_drive_time_distribution,
+                     percentage_cars_on_main_road, force_intensity, starting_drive_time_distribution)
 
     # sim = Simulation()
 
     sim.generate_cars_list()
 
-    cars_list = sim.get_cars_list()  # tak sobie pobierajcie listę aut
+    cars_list = sim.get_cars_list() 
+
     events_list = []
     for car in cars_list:
         events_list.append(Event(car))

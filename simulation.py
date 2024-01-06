@@ -5,8 +5,8 @@ from car import Car
 
 
 class Simulation:
-    def __init__(self, sim_time=600, warm_up_time=200, traffic_intensity=5, segment_drive_time=3,
-                 percentage_cars_on_main_road=0.3, force_intensity=20, starting_drive_time=5):
+    def __init__(self, sim_time=600, warm_up_time=200, traffic_intensity=5, segment_drive_time_distribution=3,
+                 percentage_cars_on_main_road=0.3, force_intensity=20, starting_drive_time_distribution=5):
         self.sim_time = sim_time
         if sim_time < 0:
             raise Exception("sim_time value can't be negative")
@@ -19,9 +19,10 @@ class Simulation:
         if traffic_intensity < 0:
             raise Exception("traffic_intensity value can't be negative")
 
-        self.segment_drive_time = segment_drive_time
-        if segment_drive_time < 0:
-            raise Exception("segment_drive_time value can't be negative")
+        self.segment_drive_time_distribution = segment_drive_time_distribution
+        if segment_drive_time_distribution < 0:
+            raise Exception(
+                "segment_drive_time_distribution value can't be negative")
 
         self.percentage_cars_on_main_road = percentage_cars_on_main_road
         if percentage_cars_on_main_road < 0.25:
@@ -35,10 +36,10 @@ class Simulation:
         if force_intensity < 0:
             raise Exception("force_intensity value can't be negative")
 
-        self.starting_drive_time = starting_drive_time
-        if starting_drive_time < 0:
+        self.starting_drive_time_distribution = starting_drive_time_distribution
+        if starting_drive_time_distribution < 0:
             raise Exception("starting_drive_time value can't be negative")
-        
+
         self.cars_list = None
 
     def choose_direction(self, pass_direction=None):
@@ -90,23 +91,29 @@ class Simulation:
         all_cars_time = 0
 
         while True:
-            time_to_next_car = np.round(np.random.exponential(
-                scale=self.traffic_intensity))
+            time_to_next_car = np.random.exponential(
+                scale=self.traffic_intensity)
 
             all_cars_time += time_to_next_car
 
-            time_to_force = np.round(np.random.exponential(
-                scale=self.force_intensity, size=1))
+            if all_cars_time > self.sim_time + self.warm_up_time:
+                break
+
+            time_to_force = np.random.exponential(
+                scale=self.force_intensity, size=1)
 
             entry_direction = self.choose_direction()
 
             destination_direction = self.choose_direction(entry_direction)
 
-            cars_list.append(Car(all_cars_time, time_to_force,
-                             entry_direction, destination_direction))
+            segment_drive_time = np.random.normal(
+                loc=self.segment_drive_time_distribution, scale=1)
 
-            if all_cars_time > self.sim_time + self.warm_up_time:
-                break
+            starting_drive_time = np.random.normal(
+                loc=self.starting_drive_time_distribution, scale=1)
+
+            cars_list.append(Car(all_cars_time, time_to_force, entry_direction,
+                             destination_direction, segment_drive_time, starting_drive_time))
 
         self.cars_list = cars_list
 
