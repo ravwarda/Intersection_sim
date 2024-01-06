@@ -11,7 +11,7 @@ class Intersection:
         self.events = events
 
     def run_sim(self, sim_time):
-        self.events.append(Event("end", sim_time, None))
+        self.events.append(Event(None, sim_time, "end"))
         while self.sys_time < sim_time:
             self.sys_time = min(event.time for event in self.events)
             in_events = []

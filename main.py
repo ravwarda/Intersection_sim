@@ -27,13 +27,13 @@ def execute_simulation():
 
     sim.generate_cars_list()
 
-    cars_list1 = sim.get_cars_list()  # tak sobie pobierajcie listę aut
+    cars_list = sim.get_cars_list()  # tak sobie pobierajcie listę aut
+    events_list = []
+    for car in cars_list:
+        events_list.append(Event(car))
+    Intersection(events_list).run_sim(sim_time)
 
 
 if __name__ == "__main__":
     execute_simulation()
 
-# events = [Event("in", 54, 2), Event("out", 75, 1)]
-#
-# inter_sim = Intersection(events)
-# inter_sim.run_sim(100)
