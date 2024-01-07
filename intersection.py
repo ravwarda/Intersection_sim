@@ -10,8 +10,13 @@ class Intersection:
             self.segments.append(self.Segment())
         self.events = events
 
+    # def check_priority(self, cars):
+
+
     def run_sim(self, sim_time):
-        self.events.append(Event(None, sim_time, "end"))
+        self.events.append(Event(None, sim_time, "end"))  # ustalenie momentu zakończenia symulacji
+
+        # obsługa bieżących wydarzeń w symulacji
         while self.sys_time < sim_time:
             self.sys_time = min(event.time for event in self.events)
             in_events = []
@@ -23,13 +28,25 @@ class Intersection:
                     else:
                         out_events.append(event)
                     self.events.remove(event)
-            for event in in_events:
-                # dodawanie aut do kolejek
-                pass
-            for event in out_events:
-                # zwalnianie sektorów
-                pass
-            # wpuszczanie aut na skrzyżowanie
+            for event in in_events:  # dodawanie aut do kolejek
+                if event.car.entry_direction == "main1":
+                    self.queues[0].append(event.car)
+                elif event.car.entry_direction == "side1":
+                    self.queues[1].append(event.car)
+                elif event.car.entry_direction == "main2":
+                    self.queues[2].append(event.car)
+                elif event.car.entry_direction == "side2":
+                    self.queues[3].append(event.car)
+            for event in out_events:  # zwalnianie segmentów skrzyżowania
+                for segment in self.segments:
+                    if event.car == segment.o_car:
+                        segment.release()
+
+            # obsługa wpuszczania aut na skrzyżowanie
+            # considered_cars = []
+            # for queue in self.queues:
+            #     if queue:
+
 
         return 0
 
