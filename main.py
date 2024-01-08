@@ -27,7 +27,7 @@ def execute_simulation():
 
     sim.generate_cars_list()
 
-    cars_list = sim.get_cars_list() 
+    cars_list = sim.get_cars_list()
 
     events_list = []
     for car in cars_list:

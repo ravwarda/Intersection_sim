@@ -1,7 +1,7 @@
 
 class Car:
     def __init__(self, arrival_time=0, time_to_force=0, entry_direction=None,
-                 destination_direction=None, segment_drive_time=3, starting_drive_time=5):
+                 destination_direction=None, segment_drive_time=3, starting_drive_time=5, is_analyzed=True):
         self.arrival_time = arrival_time  # czas wjechania na skrzyżowanie
         # czas po jakim nastąpi wymuszenie pierwszeństwa
         self.time_to_force = time_to_force
@@ -15,6 +15,8 @@ class Car:
         self.segment_drive_time = segment_drive_time
         # dodatkowy czas na ruszenie po zatrzymaniu
         self.starting_drive_time = starting_drive_time
+        # flaga czy auto ma być badane czy nie
+        self.is_analyzed = is_analyzed
 
     def change_moving_state(self):
         self.is_moving = not self.is_moving

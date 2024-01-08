@@ -112,8 +112,10 @@ class Simulation:
             starting_drive_time = np.random.lognormal(
                 mean=self.starting_drive_time_distribution, sigma=0.1)
 
+            is_analyzed = all_cars_time > self.warm_up_time
+
             cars_list.append(Car(all_cars_time, time_to_force, entry_direction,
-                             destination_direction, segment_drive_time, starting_drive_time))
+                             destination_direction, segment_drive_time, starting_drive_time, is_analyzed))
 
         self.cars_list = cars_list
 
