@@ -32,7 +32,8 @@ def execute_simulation():
     events_list = []
     for car in cars_list:
         events_list.append(Event(car))
-    Intersection(events_list).run_sim(sim_time)
+    # Intersection(events_list).run_sim(sim_time)
+    Intersection(events_list).check_priority(cars_list)
 
 
 if __name__ == "__main__":
