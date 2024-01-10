@@ -17,6 +17,7 @@ class Car:
         self.starting_drive_time = starting_drive_time
         # flaga czy auto ma być badane czy nie
         self.is_analyzed = is_analyzed
+        self.number = None  # numer jest mi potrzebny do wizualizacji działania symulacji
 
     def change_moving_state(self):
         self.is_moving = not self.is_moving
