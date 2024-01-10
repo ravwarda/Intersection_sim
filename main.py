@@ -1,6 +1,7 @@
 from intersection import Intersection
 from event import Event
 from simulation import Simulation
+from roundabout import rondo_run_sim
 
 
 def execute_simulation():
@@ -33,6 +34,23 @@ def execute_simulation():
     for car in cars_list:
         events_list.append(Event(car))
     Intersection(events_list).run_sim(sim_time, describe=True)
+
+    cars, start_time, sim_time = sim.get_cars_list(), warm_up_time, sim_time
+
+    print(start_time, sim_time)
+    print(len(cars))
+    cars_out = rondo_run_sim(cars, start_time, sim_time)
+    print("________")
+
+    for i in range(0, len(cars_out[0])):
+        print(cars_out[0][i].arrival_time, end=" ")
+        print(cars_out[0][i].entry_direction, end="--->")
+        print(cars_out[0][i].destination_direction, end=" ")
+        print(cars_out[0][i].segment_drive_time, end=" ")
+        print(
+            f"Całkowity czas przejazdu: {cars_out[1][i]-cars_out[0][i].arrival_time}")
+    print("Ile aut w symulacji: {}".format(len(cars_out[0])))
+    print("Ile aut razem: {}".format(len(cars_list)))
 
 
 if __name__ == "__main__":

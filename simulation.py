@@ -100,7 +100,7 @@ class Simulation:
                 break
 
             time_to_force = np.random.exponential(
-                scale=self.force_intensity, size=1)
+                scale=self.force_intensity)
 
             entry_direction = self.choose_direction()
 
