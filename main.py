@@ -3,6 +3,9 @@ from event import Event
 from simulation import Simulation
 from roundabout import rondo_run_sim
 
+# funkcja generowania danych wejściowych
+# funkcja do danych wyjściowych
+
 
 def execute_simulation():
     # ---Parametry początkowe:
@@ -11,14 +14,14 @@ def execute_simulation():
     # czas na rozgrzanie symulacji - po jakim czasie działania symualcji zaczynamy badanie
     warm_up_time = 200
     # natężenie ilości aut na całym skrzyżowaniu (czym mniejsza wartosc tym wiecej aut)
-    traffic_intensity = 5
-    # średnia dla rozkładu normalnego określająca czas przejechania przez segment skrzyżowania
+    traffic_intensity = 10
+    # średnia dla rozkładu lognormalnego określająca czas przejechania przez segment skrzyżowania
     segment_drive_time_distribution = 1.5
     # ile procent aut przyjeżdża z jednego kierunku drogi głównej
     percentage_cars_on_main_road = 0.3
-    # natężenie częstości wymuszania pierwszeństwa
-    force_intensity = 20
-    # średnia dla rozkładu normalnego określająca czas na rozpoczęcie jazdy po zatrzymaniu
+    # średnia dla rozkładu lognormalnego określająca czas do wymuszenia
+    force_intensity = 4.5
+    # średnia dla rozkładu lognormalnego określająca czas na rozpoczęcie jazdy po zatrzymaniu
     starting_drive_time_distribution = 2
 
     sim = Simulation(sim_time, warm_up_time, traffic_intensity, segment_drive_time_distribution,
@@ -33,7 +36,8 @@ def execute_simulation():
     events_list = []
     for car in cars_list:
         events_list.append(Event(car))
-    Intersection(events_list).run_sim(sim_time, describe=True)
+        print(car.arrival_time)
+    Intersection(events_list).run_sim(sim_time, describe=False)
 
     cars, start_time, sim_time = sim.get_cars_list(), warm_up_time, sim_time
 

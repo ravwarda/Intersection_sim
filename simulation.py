@@ -99,7 +99,10 @@ class Simulation:
             if all_cars_time > self.sim_time + self.warm_up_time:
                 break
 
-            time_to_force = np.random.exponential(
+            time_to_force = np.random.lognormal(
+                mean=self.force_intensity, sigma=0.15)
+            
+            np.random.exponential(
                 scale=self.force_intensity)
 
             entry_direction = self.choose_direction()

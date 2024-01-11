@@ -77,7 +77,7 @@ def rondo_run_sim(cars, sim_time, start_time):
             min_cars = 999999999
     # zwraca nowy sys_time
         my_min = min(min_seg, min_time_to_force, min_cars, end_time)
-        print(my_min)
+        # print(my_min)
         return my_min
 
     def move_car(seg):
@@ -88,7 +88,7 @@ def rondo_run_sim(cars, sim_time, start_time):
             seg.next_segment.next_segment.occupied = True  # od razu zaklepuje następny
         seg.release()  # zwalnia obecny segment
         state_change = True  # nastąpiła zmiana
-        print("Autko przesunęło się o segment")
+        # print("Autko przesunęło się o segment")
 
     def handle_traffic_jam(sys_time):
         move_all = True
@@ -121,7 +121,7 @@ def rondo_run_sim(cars, sim_time, start_time):
                             cars_out[1].append(sys_time)
                         seg.release()  # usuwam autko z segmentu
                         state_change = True  # nastąpiła zmiana
-                        print("Autko wyjechało z ronda")
+                        # print("Autko wyjechało z ronda")
                         continue
                     else:  # jeśli autko nie jest na ostanim segmencie:
                         if seg.next_segment.o_car == None:  # jeśli nie ma autka na następnym wjeżdża na kolejny segment
@@ -133,7 +133,7 @@ def rondo_run_sim(cars, sim_time, start_time):
                                 seg.next_segment.next_segment.occupied = True  # od razu zaklepuje następny
                             seg.release()  # zwalnia obecny segment
                             state_change = True  # nastąpiła zmiana
-                            print("Autko przesunęło się o segment")
+                            # print("Autko przesunęło się o segment")
 
             handle_traffic_jam(sys_time)
 
@@ -163,7 +163,7 @@ def rondo_run_sim(cars, sim_time, start_time):
             # dodaje auto do odpowiedniej kolejki w zależności od kierunku wjazdu auta
             queues[ind].append(cars[0])
             cars.pop(0)  # usuwam autu z listy
-            print("Dodano auto do kolejki do skrzyżowania")
+            # print("Dodano auto do kolejki do skrzyżowania")
 
     def segment_index(no_queue):
         if no_queue == 0:
@@ -196,7 +196,7 @@ def rondo_run_sim(cars, sim_time, start_time):
                     queues[i].pop(0)  # usuwam już autko z kolejki
                     # ---- tutaj następne autko musi zyskac czas na wymuszenie
                     add_time_to_force(cars=queues[i], sys_time=sys_time)
-                    print("Nastąpiło wymuszenie")
+                    # print("Nastąpiło wymuszenie")
                     continue
 
     def moving_car_from_queue_to_rnd(i):
@@ -219,14 +219,14 @@ def rondo_run_sim(cars, sim_time, start_time):
                     moving_car_from_queue_to_rnd(i)
                     # ---- tutaj następne autko musi zyskac czas na wymuszenie
                     add_time_to_force(cars=queues[i], sys_time=sys_time)
-                    print("Autko wymusiło")
+                    # print("Autko wymusiło")
                     continue
 
             # wjechanie na rondo, wystarczy, że occupied is False
             if segments[segment_index(i)].occupied is False:
                 moving_car_from_queue_to_rnd(i)
                 add_time_to_force(cars=queues[i], sys_time=sys_time)
-                print("Autko wjechało na rondo")
+                # print("Autko wjechało na rondo")
                 continue
 
     # def get_queue_index(self, entry_direction):
@@ -250,7 +250,7 @@ def rondo_run_sim(cars, sim_time, start_time):
     while 1 > 0:
         sys_time = sim_time_search(sys_time)
         if sys_time >= end_time:
-            print("KONIEC SYMULACJI")
+            # print("KONIEC SYMULACJI")
             break
         check_cars(sys_time)
         force(sys_time)
