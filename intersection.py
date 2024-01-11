@@ -43,7 +43,7 @@ class Intersection:
                 entry += 1
         return True
 
-    # funkcja sprawdzająca,
+    # funkcja sprawdzająca, który samochód powinien wjechać na skrzyżowanie
     def check_priority(self, cars):
         def check_result():
             if len(result_cars) == 1:
@@ -70,12 +70,31 @@ class Intersection:
                     result_cars.append(car)
         return check_result()
 
-    def run_sim(self, sim_time, describe=False):
+    def calculate_out_event_time(self, car):
+        entry = car_direction(car)
+        destination = car_direction(car, destination=True)
+        if entry > destination:
+            destination += 4
+        out_time = self.sys_time
+        if destination - entry == 1:
+            out_time += car.segment_drive_time * 2
+        elif destination - entry == 2:
+            out_time += car.segment_drive_time * 1.5
+        elif destination - entry == 3:
+            out_time += car.segment_drive_time * 2.2
+        else:
+            raise Exception("Car direction check error")
+        if not car.is_moving:
+            out_time += car.starting_drive_time
+        return out_time
+
+    def run_sim(self, sim_time, warm_up_time, describe=False):
         car_counter = 0
-        self.events.append(Event(None, sim_time, "end"))  # ustalenie momentu zakończenia symulacji
+        result_cars = [[], []]
+        self.events.append(Event(None, warm_up_time + sim_time, "end"))  # ustalenie momentu zakończenia symulacji
 
         # obsługa bieżących wydarzeń w symulacji
-        while self.sys_time < sim_time:
+        while self.sys_time < warm_up_time + sim_time:
             self.sys_time = min(event.time for event in self.events)
             in_events = []
             out_events = []
@@ -87,7 +106,7 @@ class Intersection:
                     elif event.type == "out":
                         out_events.append(event)
                     else:
-                        return 0
+                        return result_cars
                     self.events.remove(event)
             # dodawanie aut do kolejek
             for event in in_events:
@@ -102,6 +121,9 @@ class Intersection:
             # zwalnianie segmentów skrzyżowania
             for event in out_events:
                 if describe: print(f"{self.sys_time}: Samochód {event.car.number} zjechał ze skrzyżowania, w drogę {event.car.destination_direction}")
+                if event.car.arrival_time > warm_up_time:
+                    result_cars[0].append(event.car)
+                    result_cars[1].append(event.time)
                 for segment in self.segments:
                     if event.car == segment.o_car:
                         segment.release()
@@ -119,16 +141,13 @@ class Intersection:
                 self.queues[car_direction(entering_car)].remove(entering_car)
                 self.segments_free(entering_car, occupy=True)
                 if describe: print(f"{self.sys_time}: Samochód {entering_car.number}, wjechał na skrzyżowanie")
-                if entering_car.is_moving:
-                    event_time = self.sys_time + entering_car.segment_drive_time
-                else:
-                    event_time = self.sys_time + entering_car.segment_drive_time + entering_car.starting_drive_time
+                event_time = self.calculate_out_event_time(entering_car)
                 self.events.append(Event(entering_car, event_time, "out"))
             if considered_cars:
                 for car in considered_cars:
                     car.is_moving = False
 
-        return 0
+        return result_cars
 
     class Segment:
         def __init__(self):
