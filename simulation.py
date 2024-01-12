@@ -87,6 +87,7 @@ class Simulation:
         return dir_choice
 
     def generate_cars_list(self):
+        '''tworzy listę aut do symulacji'''
         cars_list = []
         all_cars_time = 0
 
@@ -123,6 +124,7 @@ class Simulation:
         self.cars_list = cars_list
 
     def get_cars_list(self):
+        '''zwraca kopię listy aut do symulacji'''
         if self.cars_list is None:
             raise Exception("Can't get cars_list if it is empty")
 

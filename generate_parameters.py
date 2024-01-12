@@ -4,12 +4,13 @@ import itertools
 
 
 def generate_parmeters_file(filename="parameters.json", step=1):
+    '''tworzy plik json z wszystkimi kombinacjami parametrów'''
     alpha = 1
 
-    def normalize(x, min, max, alpha=1):
+    def normalize(x, min, max):
         return 2*alpha*(x - min) / (max - min) - alpha
 
-    def denormalize(x, min, max, alpha=1):
+    def denormalize(x, min, max):
         return (x + alpha) / (2*alpha) * (max - min) + min
 
     traffic_min = 1
@@ -33,7 +34,7 @@ def generate_parmeters_file(filename="parameters.json", step=1):
 
     all_combinations_list = list(itertools.product(
         *[traffic_params, segment_params, percentage_params]))  # tworzenie wszystkich kombinacji
-
+    
     with open(filename, 'w') as f:
         f.write("[\n")
     for i in range(len(all_combinations_list)):
@@ -42,7 +43,6 @@ def generate_parmeters_file(filename="parameters.json", step=1):
             'segment': all_combinations_list[i][1],
             'percentage': all_combinations_list[i][2]
         }
-
         with open(filename, 'a') as f:
             json.dump(dictionary, f, indent=4)
             f.write(",\n")
@@ -53,9 +53,10 @@ def generate_parmeters_file(filename="parameters.json", step=1):
                 f.write(",\n")
     with open(filename, 'a') as f:
         f.write("\n]")
-# 
+
 
 def get_parameters_from_file(filename="parameters.json"):
+    '''pobiera parametry z pliku i zwraca listę słowników'''
     with open(filename) as f:
         data = json.load(f)
         return data

@@ -2,7 +2,8 @@
 class Car:
     def __init__(self, arrival_time=0, time_to_force=0, entry_direction=None,
                  destination_direction=None, segment_drive_time=3, starting_drive_time=5, is_analyzed=True):
-        self.arrival_time = arrival_time  # czas wjechania na skrzyżowanie
+        # czas wjechania na skrzyżowanie
+        self.arrival_time = arrival_time
         # czas po jakim nastąpi wymuszenie pierwszeństwa
         self.time_to_force = time_to_force
         # kierunek z którego auto wjechało na skrzyżowanie
@@ -17,7 +18,8 @@ class Car:
         self.starting_drive_time = starting_drive_time
         # flaga czy auto ma być badane czy nie
         self.is_analyzed = is_analyzed
-        self.number = None  # numer jest mi potrzebny do wizualizacji działania symulacji
+        # numer jest mi potrzebny do wizualizacji działania symulacji
+        self.number = None
 
     def change_moving_state(self):
         self.is_moving = not self.is_moving
