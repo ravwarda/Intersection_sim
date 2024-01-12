@@ -1,8 +1,10 @@
 import matplotlib.pyplot as plt
+import numpy as np
 from intersection import Intersection
 from event import Event
 from simulation import Simulation
 from roundabout import rondo_run_sim
+
 
 def sim_summary(cars_out_list, name=None, extended_summary=False):
     print("_"*80)
@@ -21,35 +23,38 @@ def sim_summary(cars_out_list, name=None, extended_summary=False):
         "ronda" if name == "Roundabout" else "skrzyżowania", calculate_sim_time(cars_out_list)))
     # print("Ile aut razem (sym + w czsie rozgrzewania): {}".format(len(cars_list)))
 
+
 def calculate_sim_time(cars_out_list):
     main_weight = 2
     side_weight = 1.5
     main_time_in_sim = 0
     side_time_in_sim = 0
 
-    car_counter = len(cars_out_list[0])
-    counter = 0
+    times = []
     for i in range(0, len(cars_out_list[0])):
-        if "main" in cars_out_list[0][i].entry_direction:
-            main_time_in_sim += cars_out_list[1][i] - \
-                cars_out_list[0][i].arrival_time
-            counter += 1
-        elif "side" in cars_out_list[0][i].entry_direction:
-            side_time_in_sim += cars_out_list[1][i] - \
-                cars_out_list[0][i].arrival_time
-            counter += 1
-        else:
-            raise Exception("Incorrect car entry_direction: {}".format(
-                cars_out_list[0][i].entry_direction))
-    output_time = ((main_weight * main_time_in_sim) ** 2 + (side_weight *
-                    side_time_in_sim) ** 2) / (car_counter*main_weight*side_weight)**2 if car_counter != 0 else 1
+        times.append(cars_out_list[1][i] - cars_out_list[0][i].arrival_time)
+        # if "main" in cars_out_list[0][i].entry_direction:
+        #     main_time_in_sim += cars_out_list[1][i] - \
+        #         cars_out_list[0][i].arrival_time
+        # elif "side" in cars_out_list[0][i].entry_direction:
+        #     side_time_in_sim += cars_out_list[1][i] - \
+        #         cars_out_list[0][i].arrival_time
+        # else:
+        #     raise Exception("Incorrect car entry_direction: {}".format(
+        #         cars_out_list[0][i].entry_direction))
+    if len(cars_out_list[0]) == 0:
+        return -1
+    # output_time = ((main_weight * main_time_in_sim) ** 2 + (side_weight *
+    #                 side_time_in_sim) ** 2) / ((car_counter*main_weight*side_weight)**2 if car_counter != 0 else 1)
+    output_time = np.average(times)
     return output_time
 
+
 def sim_call(summary, sim_time, warm_up_time, traffic_intensity, segment_drive_time_distribution,
-                percentage_cars_on_main_road, force_intensity, starting_drive_time_distribution):
+             percentage_cars_on_main_road, force_intensity, starting_drive_time_distribution):
 
     sim = Simulation(sim_time, warm_up_time, traffic_intensity, segment_drive_time_distribution,
-                        percentage_cars_on_main_road, force_intensity, starting_drive_time_distribution)
+                     percentage_cars_on_main_road, force_intensity, starting_drive_time_distribution)
 
     sim.generate_cars_list()
     cars_list = sim.get_cars_list()
@@ -69,6 +74,7 @@ def sim_call(summary, sim_time, warm_up_time, traffic_intensity, segment_drive_t
         sim_summary(cars_out_rnd, "Roundabout", extended_summary=True)
 
     return cars_out_intersection, cars_out_rnd
+
 
 def make_chart(int_times, rnd_times):
     plt.plot(int_times, 'g*', label="intersection")

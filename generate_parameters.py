@@ -3,7 +3,7 @@ import numpy as np
 import itertools
 
 
-def generate_parmeters_file(filename="parameters.json", step=0.2):
+def generate_parmeters_file(filename="parameters.json", step=1):
     alpha = 1
 
     def normalize(x, min, max, alpha=1):
@@ -15,8 +15,8 @@ def generate_parmeters_file(filename="parameters.json", step=0.2):
     traffic_min = 1
     traffic_max = 20
 
-    segment_min = 1
-    segment_max = 3
+    segment_min = 0.5
+    segment_max = 1
 
     percentage_min = 0.25
     percentage_max = 0.5
@@ -44,6 +44,10 @@ def generate_parmeters_file(filename="parameters.json", step=0.2):
         }
 
         with open(filename, 'a') as f:
+            json.dump(dictionary, f, indent=4)
+            f.write(",\n")
+            json.dump(dictionary, f, indent=4)
+            f.write(",\n")
             json.dump(dictionary, f, indent=4)
             if i != len(all_combinations_list)-1:
                 f.write(",\n")

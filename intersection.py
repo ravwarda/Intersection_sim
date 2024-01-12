@@ -118,10 +118,12 @@ class Intersection:
                 event.car.number = car_counter
                 if describe: print(f"{self.sys_time}: Samochód {event.car.number} dotarł do kolejki {event.car.entry_direction}, na {len(queue)} miejsce")
                 event.car.time_to_force += self.sys_time
+                if event.time > warm_up_time:
+                    event.car.is_analyzed = True
             # zwalnianie segmentów skrzyżowania
             for event in out_events:
                 if describe: print(f"{self.sys_time}: Samochód {event.car.number} zjechał ze skrzyżowania, w drogę {event.car.destination_direction}")
-                if event.car.arrival_time > warm_up_time:
+                if event.car.is_analyzed:
                     result_cars[0].append(event.car)
                     result_cars[1].append(event.time)
                 for segment in self.segments:
