@@ -201,7 +201,7 @@ def rondo_run_sim(cars, sim_time, start_time):
 
     def moving_car_from_queue_to_rnd(i):
         added_time = 0
-        if queues[i][0].is_moving:
+        if not queues[i][0].is_moving:
             added_time = queues[i][0].starting_drive_time
             queues[i][0].is_moving = True
         segments[segment_index(i)].occupy(
