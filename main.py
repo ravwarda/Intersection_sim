@@ -1,4 +1,3 @@
-
 from simulation_functions import *
 
 
@@ -22,14 +21,23 @@ def execute_simulation():
     starting_drive_time_distribution = 0.8
 
     # czy wywołać pojedynczą sumulację dla danych powyżej czy dla wszystkich danych z pliku
-    use_file = False
+    use_file = True
 
     # ------------------------------
 
-    starting_drive_time_distribution = starting_drive_time_distribution * segment_drive_time_distribution
+    starting_drive_time_distribution = (
+        starting_drive_time_distribution * segment_drive_time_distribution
+    )
 
-    parameters = [sim_time, warm_up_time, traffic_intensity, segment_drive_time_distribution,
-                  percentage_cars_on_main_road, force_intensity, starting_drive_time_distribution]
+    parameters = [
+        sim_time,
+        warm_up_time,
+        traffic_intensity,
+        segment_drive_time_distribution,
+        percentage_cars_on_main_road,
+        force_intensity,
+        starting_drive_time_distribution,
+    ]
 
     if use_file:
         simulations_from_file(parameters, generate_new_file=True)

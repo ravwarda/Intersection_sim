@@ -1,407 +1,83 @@
 [
-{
-    "traffic": 1.0,
-    "segment": 0.5,
-    "percentage": 0.25
-},
-{
-    "traffic": 1.0,
-    "segment": 0.5,
-    "percentage": 0.25
-},
-{
-    "traffic": 1.0,
-    "segment": 0.5,
-    "percentage": 0.25
-},
-{
-    "traffic": 1.0,
-    "segment": 0.5,
-    "percentage": 0.375
-},
-{
-    "traffic": 1.0,
-    "segment": 0.5,
-    "percentage": 0.375
-},
-{
-    "traffic": 1.0,
-    "segment": 0.5,
-    "percentage": 0.375
-},
-{
-    "traffic": 1.0,
-    "segment": 0.5,
-    "percentage": 0.5
-},
-{
-    "traffic": 1.0,
-    "segment": 0.5,
-    "percentage": 0.5
-},
-{
-    "traffic": 1.0,
-    "segment": 0.5,
-    "percentage": 0.5
-},
-{
-    "traffic": 1.0,
-    "segment": 0.75,
-    "percentage": 0.25
-},
-{
-    "traffic": 1.0,
-    "segment": 0.75,
-    "percentage": 0.25
-},
-{
-    "traffic": 1.0,
-    "segment": 0.75,
-    "percentage": 0.25
-},
-{
-    "traffic": 1.0,
-    "segment": 0.75,
-    "percentage": 0.375
-},
-{
-    "traffic": 1.0,
-    "segment": 0.75,
-    "percentage": 0.375
-},
-{
-    "traffic": 1.0,
-    "segment": 0.75,
-    "percentage": 0.375
-},
-{
-    "traffic": 1.0,
-    "segment": 0.75,
-    "percentage": 0.5
-},
-{
-    "traffic": 1.0,
-    "segment": 0.75,
-    "percentage": 0.5
-},
-{
-    "traffic": 1.0,
-    "segment": 0.75,
-    "percentage": 0.5
-},
-{
-    "traffic": 1.0,
-    "segment": 1.0,
-    "percentage": 0.25
-},
-{
-    "traffic": 1.0,
-    "segment": 1.0,
-    "percentage": 0.25
-},
-{
-    "traffic": 1.0,
-    "segment": 1.0,
-    "percentage": 0.25
-},
-{
-    "traffic": 1.0,
-    "segment": 1.0,
-    "percentage": 0.375
-},
-{
-    "traffic": 1.0,
-    "segment": 1.0,
-    "percentage": 0.375
-},
-{
-    "traffic": 1.0,
-    "segment": 1.0,
-    "percentage": 0.375
-},
-{
-    "traffic": 1.0,
-    "segment": 1.0,
-    "percentage": 0.5
-},
-{
-    "traffic": 1.0,
-    "segment": 1.0,
-    "percentage": 0.5
-},
-{
-    "traffic": 1.0,
-    "segment": 1.0,
-    "percentage": 0.5
-},
-{
-    "traffic": 10.5,
-    "segment": 0.5,
-    "percentage": 0.25
-},
-{
-    "traffic": 10.5,
-    "segment": 0.5,
-    "percentage": 0.25
-},
-{
-    "traffic": 10.5,
-    "segment": 0.5,
-    "percentage": 0.25
-},
-{
-    "traffic": 10.5,
-    "segment": 0.5,
-    "percentage": 0.375
-},
-{
-    "traffic": 10.5,
-    "segment": 0.5,
-    "percentage": 0.375
-},
-{
-    "traffic": 10.5,
-    "segment": 0.5,
-    "percentage": 0.375
-},
-{
-    "traffic": 10.5,
-    "segment": 0.5,
-    "percentage": 0.5
-},
-{
-    "traffic": 10.5,
-    "segment": 0.5,
-    "percentage": 0.5
-},
-{
-    "traffic": 10.5,
-    "segment": 0.5,
-    "percentage": 0.5
-},
-{
-    "traffic": 10.5,
-    "segment": 0.75,
-    "percentage": 0.25
-},
-{
-    "traffic": 10.5,
-    "segment": 0.75,
-    "percentage": 0.25
-},
-{
-    "traffic": 10.5,
-    "segment": 0.75,
-    "percentage": 0.25
-},
-{
-    "traffic": 10.5,
-    "segment": 0.75,
-    "percentage": 0.375
-},
-{
-    "traffic": 10.5,
-    "segment": 0.75,
-    "percentage": 0.375
-},
-{
-    "traffic": 10.5,
-    "segment": 0.75,
-    "percentage": 0.375
-},
-{
-    "traffic": 10.5,
-    "segment": 0.75,
-    "percentage": 0.5
-},
-{
-    "traffic": 10.5,
-    "segment": 0.75,
-    "percentage": 0.5
-},
-{
-    "traffic": 10.5,
-    "segment": 0.75,
-    "percentage": 0.5
-},
-{
-    "traffic": 10.5,
-    "segment": 1.0,
-    "percentage": 0.25
-},
-{
-    "traffic": 10.5,
-    "segment": 1.0,
-    "percentage": 0.25
-},
-{
-    "traffic": 10.5,
-    "segment": 1.0,
-    "percentage": 0.25
-},
-{
-    "traffic": 10.5,
-    "segment": 1.0,
-    "percentage": 0.375
-},
-{
-    "traffic": 10.5,
-    "segment": 1.0,
-    "percentage": 0.375
-},
-{
-    "traffic": 10.5,
-    "segment": 1.0,
-    "percentage": 0.375
-},
-{
-    "traffic": 10.5,
-    "segment": 1.0,
-    "percentage": 0.5
-},
-{
-    "traffic": 10.5,
-    "segment": 1.0,
-    "percentage": 0.5
-},
-{
-    "traffic": 10.5,
-    "segment": 1.0,
-    "percentage": 0.5
-},
-{
-    "traffic": 20.0,
-    "segment": 0.5,
-    "percentage": 0.25
-},
-{
-    "traffic": 20.0,
-    "segment": 0.5,
-    "percentage": 0.25
-},
-{
-    "traffic": 20.0,
-    "segment": 0.5,
-    "percentage": 0.25
-},
-{
-    "traffic": 20.0,
-    "segment": 0.5,
-    "percentage": 0.375
-},
-{
-    "traffic": 20.0,
-    "segment": 0.5,
-    "percentage": 0.375
-},
-{
-    "traffic": 20.0,
-    "segment": 0.5,
-    "percentage": 0.375
-},
-{
-    "traffic": 20.0,
-    "segment": 0.5,
-    "percentage": 0.5
-},
-{
-    "traffic": 20.0,
-    "segment": 0.5,
-    "percentage": 0.5
-},
-{
-    "traffic": 20.0,
-    "segment": 0.5,
-    "percentage": 0.5
-},
-{
-    "traffic": 20.0,
-    "segment": 0.75,
-    "percentage": 0.25
-},
-{
-    "traffic": 20.0,
-    "segment": 0.75,
-    "percentage": 0.25
-},
-{
-    "traffic": 20.0,
-    "segment": 0.75,
-    "percentage": 0.25
-},
-{
-    "traffic": 20.0,
-    "segment": 0.75,
-    "percentage": 0.375
-},
-{
-    "traffic": 20.0,
-    "segment": 0.75,
-    "percentage": 0.375
-},
-{
-    "traffic": 20.0,
-    "segment": 0.75,
-    "percentage": 0.375
-},
-{
-    "traffic": 20.0,
-    "segment": 0.75,
-    "percentage": 0.5
-},
-{
-    "traffic": 20.0,
-    "segment": 0.75,
-    "percentage": 0.5
-},
-{
-    "traffic": 20.0,
-    "segment": 0.75,
-    "percentage": 0.5
-},
-{
-    "traffic": 20.0,
-    "segment": 1.0,
-    "percentage": 0.25
-},
-{
-    "traffic": 20.0,
-    "segment": 1.0,
-    "percentage": 0.25
-},
-{
-    "traffic": 20.0,
-    "segment": 1.0,
-    "percentage": 0.25
-},
-{
-    "traffic": 20.0,
-    "segment": 1.0,
-    "percentage": 0.375
-},
-{
-    "traffic": 20.0,
-    "segment": 1.0,
-    "percentage": 0.375
-},
-{
-    "traffic": 20.0,
-    "segment": 1.0,
-    "percentage": 0.375
-},
-{
-    "traffic": 20.0,
-    "segment": 1.0,
-    "percentage": 0.5
-},
-{
-    "traffic": 20.0,
-    "segment": 1.0,
-    "percentage": 0.5
-},
-{
-    "traffic": 20.0,
-    "segment": 1.0,
-    "percentage": 0.5
-}
+{"traffic": 2.0, "segment": 0.5, "percentage": 0.25},
+{"traffic": 2.0, "segment": 0.5, "percentage": 0.25},
+{"traffic": 2.0, "segment": 0.5, "percentage": 0.25},
+{"traffic": 2.0, "segment": 0.5, "percentage": 0.325},
+{"traffic": 2.0, "segment": 0.5, "percentage": 0.325},
+{"traffic": 2.0, "segment": 0.5, "percentage": 0.325},
+{"traffic": 2.0, "segment": 0.5, "percentage": 0.4},
+{"traffic": 2.0, "segment": 0.5, "percentage": 0.4},
+{"traffic": 2.0, "segment": 0.5, "percentage": 0.4},
+{"traffic": 2.0, "segment": 1.25, "percentage": 0.25},
+{"traffic": 2.0, "segment": 1.25, "percentage": 0.25},
+{"traffic": 2.0, "segment": 1.25, "percentage": 0.25},
+{"traffic": 2.0, "segment": 1.25, "percentage": 0.325},
+{"traffic": 2.0, "segment": 1.25, "percentage": 0.325},
+{"traffic": 2.0, "segment": 1.25, "percentage": 0.325},
+{"traffic": 2.0, "segment": 1.25, "percentage": 0.4},
+{"traffic": 2.0, "segment": 1.25, "percentage": 0.4},
+{"traffic": 2.0, "segment": 1.25, "percentage": 0.4},
+{"traffic": 2.0, "segment": 2.0, "percentage": 0.25},
+{"traffic": 2.0, "segment": 2.0, "percentage": 0.25},
+{"traffic": 2.0, "segment": 2.0, "percentage": 0.25},
+{"traffic": 2.0, "segment": 2.0, "percentage": 0.325},
+{"traffic": 2.0, "segment": 2.0, "percentage": 0.325},
+{"traffic": 2.0, "segment": 2.0, "percentage": 0.325},
+{"traffic": 2.0, "segment": 2.0, "percentage": 0.4},
+{"traffic": 2.0, "segment": 2.0, "percentage": 0.4},
+{"traffic": 2.0, "segment": 2.0, "percentage": 0.4},
+{"traffic": 6.0, "segment": 0.5, "percentage": 0.25},
+{"traffic": 6.0, "segment": 0.5, "percentage": 0.25},
+{"traffic": 6.0, "segment": 0.5, "percentage": 0.25},
+{"traffic": 6.0, "segment": 0.5, "percentage": 0.325},
+{"traffic": 6.0, "segment": 0.5, "percentage": 0.325},
+{"traffic": 6.0, "segment": 0.5, "percentage": 0.325},
+{"traffic": 6.0, "segment": 0.5, "percentage": 0.4},
+{"traffic": 6.0, "segment": 0.5, "percentage": 0.4},
+{"traffic": 6.0, "segment": 0.5, "percentage": 0.4},
+{"traffic": 6.0, "segment": 1.25, "percentage": 0.25},
+{"traffic": 6.0, "segment": 1.25, "percentage": 0.25},
+{"traffic": 6.0, "segment": 1.25, "percentage": 0.25},
+{"traffic": 6.0, "segment": 1.25, "percentage": 0.325},
+{"traffic": 6.0, "segment": 1.25, "percentage": 0.325},
+{"traffic": 6.0, "segment": 1.25, "percentage": 0.325},
+{"traffic": 6.0, "segment": 1.25, "percentage": 0.4},
+{"traffic": 6.0, "segment": 1.25, "percentage": 0.4},
+{"traffic": 6.0, "segment": 1.25, "percentage": 0.4},
+{"traffic": 6.0, "segment": 2.0, "percentage": 0.25},
+{"traffic": 6.0, "segment": 2.0, "percentage": 0.25},
+{"traffic": 6.0, "segment": 2.0, "percentage": 0.25},
+{"traffic": 6.0, "segment": 2.0, "percentage": 0.325},
+{"traffic": 6.0, "segment": 2.0, "percentage": 0.325},
+{"traffic": 6.0, "segment": 2.0, "percentage": 0.325},
+{"traffic": 6.0, "segment": 2.0, "percentage": 0.4},
+{"traffic": 6.0, "segment": 2.0, "percentage": 0.4},
+{"traffic": 6.0, "segment": 2.0, "percentage": 0.4},
+{"traffic": 10.0, "segment": 0.5, "percentage": 0.25},
+{"traffic": 10.0, "segment": 0.5, "percentage": 0.25},
+{"traffic": 10.0, "segment": 0.5, "percentage": 0.25},
+{"traffic": 10.0, "segment": 0.5, "percentage": 0.325},
+{"traffic": 10.0, "segment": 0.5, "percentage": 0.325},
+{"traffic": 10.0, "segment": 0.5, "percentage": 0.325},
+{"traffic": 10.0, "segment": 0.5, "percentage": 0.4},
+{"traffic": 10.0, "segment": 0.5, "percentage": 0.4},
+{"traffic": 10.0, "segment": 0.5, "percentage": 0.4},
+{"traffic": 10.0, "segment": 1.25, "percentage": 0.25},
+{"traffic": 10.0, "segment": 1.25, "percentage": 0.25},
+{"traffic": 10.0, "segment": 1.25, "percentage": 0.25},
+{"traffic": 10.0, "segment": 1.25, "percentage": 0.325},
+{"traffic": 10.0, "segment": 1.25, "percentage": 0.325},
+{"traffic": 10.0, "segment": 1.25, "percentage": 0.325},
+{"traffic": 10.0, "segment": 1.25, "percentage": 0.4},
+{"traffic": 10.0, "segment": 1.25, "percentage": 0.4},
+{"traffic": 10.0, "segment": 1.25, "percentage": 0.4},
+{"traffic": 10.0, "segment": 2.0, "percentage": 0.25},
+{"traffic": 10.0, "segment": 2.0, "percentage": 0.25},
+{"traffic": 10.0, "segment": 2.0, "percentage": 0.25},
+{"traffic": 10.0, "segment": 2.0, "percentage": 0.325},
+{"traffic": 10.0, "segment": 2.0, "percentage": 0.325},
+{"traffic": 10.0, "segment": 2.0, "percentage": 0.325},
+{"traffic": 10.0, "segment": 2.0, "percentage": 0.4},
+{"traffic": 10.0, "segment": 2.0, "percentage": 0.4},
+{"traffic": 10.0, "segment": 2.0, "percentage": 0.4}
 ]

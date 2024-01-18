@@ -5,8 +5,16 @@ from car import Car
 
 
 class Simulation:
-    def __init__(self, sim_time=600, warm_up_time=200, traffic_intensity=5, segment_drive_time_distribution=3,
-                 percentage_cars_on_main_road=0.3, force_intensity=20, starting_drive_time_distribution=5):
+    def __init__(
+        self,
+        sim_time=600,
+        warm_up_time=200,
+        traffic_intensity=5,
+        segment_drive_time_distribution=3,
+        percentage_cars_on_main_road=0.3,
+        force_intensity=20,
+        starting_drive_time_distribution=5,
+    ):
         self.sim_time = sim_time
         if sim_time < 0:
             raise Exception("sim_time value can't be negative")
@@ -21,16 +29,15 @@ class Simulation:
 
         self.segment_drive_time_distribution = segment_drive_time_distribution
         if segment_drive_time_distribution < 0:
-            raise Exception(
-                "segment_drive_time_distribution value can't be negative")
+            raise Exception("segment_drive_time_distribution value can't be negative")
 
         self.percentage_cars_on_main_road = percentage_cars_on_main_road
         if percentage_cars_on_main_road < 0.25:
             raise Exception(
-                "Main road has to have greater car intensity than side road")
+                "Main road has to have greater car intensity than side road"
+            )
         if percentage_cars_on_main_road > 0.5:
-            raise Exception(
-                "Too high percentage of cars on the main road (pr > 1)")
+            raise Exception("Too high percentage of cars on the main road (pr > 1)")
 
         self.force_intensity = force_intensity
         if force_intensity < 0:
@@ -87,44 +94,52 @@ class Simulation:
         return dir_choice
 
     def generate_cars_list(self):
-        '''tworzy listę aut do symulacji'''
+        """tworzy listę aut do symulacji"""
         cars_list = []
         all_cars_time = 0
 
         while True:
-            time_to_next_car = np.random.exponential(
-                scale=self.traffic_intensity)
+            time_to_next_car = np.random.exponential(scale=self.traffic_intensity)
 
             all_cars_time += time_to_next_car
 
             if all_cars_time > self.sim_time + self.warm_up_time:
                 break
 
-            time_to_force = np.random.lognormal(
-                mean=self.force_intensity, sigma=0.15)
-            
-            np.random.exponential(
-                scale=self.force_intensity)
+            time_to_force = np.random.lognormal(mean=self.force_intensity, sigma=0.15)
+
+            np.random.exponential(scale=self.force_intensity)
 
             entry_direction = self.choose_direction()
 
             destination_direction = self.choose_direction(entry_direction)
 
             segment_drive_time = np.random.lognormal(
-                mean=self.segment_drive_time_distribution, sigma=0.1)
+                mean=self.segment_drive_time_distribution, sigma=0.1
+            )
 
             starting_drive_time = np.random.lognormal(
-                mean=self.starting_drive_time_distribution, sigma=0.1)
+                mean=self.starting_drive_time_distribution, sigma=0.1
+            )
 
             is_analyzed = all_cars_time > self.warm_up_time
 
-            cars_list.append(Car(all_cars_time, time_to_force, entry_direction,
-                             destination_direction, segment_drive_time, starting_drive_time, is_analyzed))
+            cars_list.append(
+                Car(
+                    all_cars_time,
+                    time_to_force,
+                    entry_direction,
+                    destination_direction,
+                    segment_drive_time,
+                    starting_drive_time,
+                    is_analyzed,
+                )
+            )
 
         self.cars_list = cars_list
 
     def get_cars_list(self):
-        '''zwraca kopię listy aut do symulacji'''
+        """zwraca kopię listy aut do symulacji"""
         if self.cars_list is None:
             raise Exception("Can't get cars_list if it is empty")
 

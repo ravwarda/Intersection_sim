@@ -115,7 +115,7 @@ def rondo_run_sim(cars, sim_time, start_time):
                 if seg.state_change_time is not None and seg.state_change_time <= sys_time:
                     if seg.o_car.destination_direction == seg.name:  # sprawdzam, czy autko jest już na ostanim segmencie
                         #    ----------wyjazd autka z ronda -----------------
-                        if seg.o_car.is_analyzed:
+                        if sys_time >= start_time:
                             cars_out[0].append(seg.o_car)  # dodaje autko
                             # dodaje czas, w którym wyjechał
                             cars_out[1].append(sys_time)
