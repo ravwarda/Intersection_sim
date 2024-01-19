@@ -21,7 +21,7 @@ def execute_simulation():
     starting_drive_time_distribution = 0.8
 
     # czy wywołać pojedynczą sumulację dla danych powyżej czy dla wszystkich danych z pliku
-    use_file = True
+    use_file = False
 
     # ------------------------------
 

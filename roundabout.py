@@ -21,7 +21,7 @@ class Segment:
         self.state_change_time = None
 
 
-def rondo_run_sim(cars, sim_time, start_time):
+def rondo_run_sim(cars, start_time, sim_time):
     # niech cars to lista posortowanych według czasu aut
 
     # Cztery kolejki aut (pierwszy zjazd, drugi, trzeci i czwarty)
@@ -38,8 +38,16 @@ def rondo_run_sim(cars, sim_time, start_time):
     segment8 = Segment("side2", "in")  # kolejka 4
 
     # Łączenie segmentów
-    segments = [segment1, segment2, segment3, segment4,
-                segment5, segment6, segment7, segment8]
+    segments = [
+        segment1,
+        segment2,
+        segment3,
+        segment4,
+        segment5,
+        segment6,
+        segment7,
+        segment8,
+    ]
     for i in range(8):
         segments[i].next_segment = segments[(i + 1) % 8]
 
@@ -51,14 +59,17 @@ def rondo_run_sim(cars, sim_time, start_time):
     cars_out = [[], []]
 
     def sim_time_search(sys_time):
-
         # Używam filter, aby uzyskać tylko odpowiednie segmenty
-        filtered_segments = filter(lambda seg: seg.state_change_time is not None and seg.state_change_time > sys_time,
-                                   segments)
+        filtered_segments = filter(
+            lambda seg: seg.state_change_time is not None
+            and seg.state_change_time > sys_time,
+            segments,
+        )
 
         # Użyj min, aby znaleźć minimalną wartość z odpowiednich segmentów
         min_seg = min(
-            (seg.state_change_time for seg in filtered_segments), default=99999999999)
+            (seg.state_change_time for seg in filtered_segments), default=99999999999
+        )
 
         cars_time = []
         for queue in queues:
@@ -75,14 +86,15 @@ def rondo_run_sim(cars, sim_time, start_time):
             min_cars = cars[0].arrival_time
         else:
             min_cars = 999999999
-    # zwraca nowy sys_time
+        # zwraca nowy sys_time
         my_min = min(min_seg, min_time_to_force, min_cars, end_time)
         # print(my_min)
         return my_min
 
     def move_car(seg):
         seg.next_segment.occupy(
-            car=seg.o_car, time=sys_time + seg.o_car.segment_drive_time)
+            car=seg.o_car, time=sys_time + seg.o_car.segment_drive_time
+        )
         # jeśli ten, na które autko wjechało nie jest tym, z którego wyjedzie:
         if seg.next_segment.name != seg.o_car.destination_direction:
             seg.next_segment.next_segment.occupied = True  # od razu zaklepuje następny
@@ -112,8 +124,13 @@ def rondo_run_sim(cars, sim_time, start_time):
 
             for seg in segments:  # przeglądam wszystkie segmenty
                 # sprawdzam, co mogę wykonać w tej chwili
-                if seg.state_change_time is not None and seg.state_change_time <= sys_time:
-                    if seg.o_car.destination_direction == seg.name:  # sprawdzam, czy autko jest już na ostanim segmencie
+                if (
+                    seg.state_change_time is not None
+                    and seg.state_change_time <= sys_time
+                ):
+                    if (
+                        seg.o_car.destination_direction == seg.name
+                    ):  # sprawdzam, czy autko jest już na ostanim segmencie
                         #    ----------wyjazd autka z ronda -----------------
                         if sys_time >= start_time:
                             cars_out[0].append(seg.o_car)  # dodaje autko
@@ -124,13 +141,19 @@ def rondo_run_sim(cars, sim_time, start_time):
                         # print("Autko wyjechało z ronda")
                         continue
                     else:  # jeśli autko nie jest na ostanim segmencie:
-                        if seg.next_segment.o_car == None:  # jeśli nie ma autka na następnym wjeżdża na kolejny segment
+                        if (
+                            seg.next_segment.o_car == None
+                        ):  # jeśli nie ma autka na następnym wjeżdża na kolejny segment
                             seg.next_segment.occupy(
-                                car=seg.o_car, time=sys_time + seg.o_car.segment_drive_time)
+                                car=seg.o_car,
+                                time=sys_time + seg.o_car.segment_drive_time,
+                            )
 
                             # jeśli ten, na które autko wjechało nie jest tym, z którego wyjedzie:
                             if seg.next_segment.name != seg.o_car.destination_direction:
-                                seg.next_segment.next_segment.occupied = True  # od razu zaklepuje następny
+                                seg.next_segment.next_segment.occupied = (
+                                    True  # od razu zaklepuje następny
+                                )
                             seg.release()  # zwalnia obecny segment
                             state_change = True  # nastąpiła zmiana
                             # print("Autko przesunęło się o segment")
@@ -191,7 +214,9 @@ def rondo_run_sim(cars, sim_time, start_time):
                     # segments[segment_index(i)].occupied = True
                     # segments[segment_index(i)].state_change_time = sys_time + segments[segment_index(i)].o_car.segment_drive_time
                     segments[segment_index(i)].occupy(
-                        car=queues[i][0], time=sys_time + queues[i][0].segment_drive_time)
+                        car=queues[i][0],
+                        time=sys_time + queues[i][0].segment_drive_time,
+                    )
                     segments[segment_index(i)].next_segment.occupied = True
                     queues[i].pop(0)  # usuwam już autko z kolejki
                     # ---- tutaj następne autko musi zyskac czas na wymuszenie
@@ -205,7 +230,9 @@ def rondo_run_sim(cars, sim_time, start_time):
             added_time = queues[i][0].starting_drive_time
             queues[i][0].is_moving = True
         segments[segment_index(i)].occupy(
-            car=queues[i][0], time=sys_time + queues[i][0].segment_drive_time + added_time)
+            car=queues[i][0],
+            time=sys_time + queues[i][0].segment_drive_time + added_time,
+        )
         segments[segment_index(i)].next_segment.occupied = True
         queues[i].pop(0)  # usuwam już autko z kolejki
 
