@@ -4,11 +4,11 @@ from simulation_functions import *
 def execute_simulation():
     # ---Zmienne parametry  pomiędzy symulacjami:
     # natężenie ilości aut na całym skrzyżowaniu (czym mniejsza wartosc tym wiecej aut)
-    traffic_intensity = 2
+    traffic_intensity = 5
     # średnia dla rozkładu lognormalnego określająca czas przejechania przez segment skrzyżowania
-    segment_drive_time_distribution = 2
+    segment_drive_time_distribution = 1
     # ile procent aut przyjeżdża z jednego kierunku drogi głównej
-    percentage_cars_on_main_road = 0.25
+    percentage_cars_on_main_road = 0.45
 
     # ---Stałe parametry początkowe dla wszystkich symulacji:
     # czas trwania symulacji [s]
@@ -21,7 +21,7 @@ def execute_simulation():
     starting_drive_time_distribution = 0.8
 
     # czy wywołać pojedynczą sumulację dla danych powyżej czy dla wszystkich danych z pliku
-    use_file = True
+    use_file = False
 
     # ------------------------------
 

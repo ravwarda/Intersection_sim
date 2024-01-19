@@ -77,7 +77,7 @@ def sim_call(parameters, summary=False):
         sim_time, warm_up_time, describe=False
     )
 
-    cars_out_rnd = rondo_run_sim(sim.get_cars_list(), warm_up_time, sim_time)
+    cars_out_rnd = rondo_run_sim(sim.get_cars_list(), sim_time, warm_up_time)
 
     if summary:
         sim_summary(cars_out_intersection, "Intersection", extended_summary=True)
