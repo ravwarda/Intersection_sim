@@ -121,7 +121,8 @@ class Intersection:
             # zwalnianie segmentów skrzyżowania
             for event in out_events:
                 if describe: print(f"{self.sys_time}: Samochód {event.car.number} zjechał ze skrzyżowania, w drogę {event.car.destination_direction}")
-                if event.car.is_analyzed:
+                # if event.car.is_analyzed:
+                if self.sys_time >= warm_up_time:
                     result_cars[0].append(event.car)
                     result_cars[1].append(event.time)
                 for segment in self.segments:
@@ -141,8 +142,8 @@ class Intersection:
                 self.queues[car_direction(entering_car)].remove(entering_car)
                 self.segments_free(entering_car, occupy=True)
                 if describe: print(f"{self.sys_time}: Samochód {entering_car.number}, wjechał na skrzyżowanie, z kolejki {entering_car.entry_direction}, zmierza do {entering_car.destination_direction}")
-                if self.sys_time > warm_up_time:
-                    entering_car.is_analyzed = True
+                # if self.sys_time > warm_up_time:
+                #     entering_car.is_analyzed = True
                 event_time = self.calculate_out_event_time(entering_car)
                 self.events.append(Event(entering_car, event_time, "out"))
             if considered_cars:
