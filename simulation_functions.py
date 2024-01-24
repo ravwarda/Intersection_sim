@@ -1,5 +1,4 @@
 import os
-import matplotlib.pyplot as plt
 import numpy as np
 
 from event import Event
@@ -7,6 +6,7 @@ from intersection import Intersection
 from simulation import Simulation
 from roundabout import rondo_run_sim
 from generate_parameters import *
+from plot_graphs import plot_graphs
 
 
 def simulations_from_file(
@@ -28,7 +28,7 @@ def simulations_from_file(
         intersection_times.append(calculate_sim_time(cars_out_intersection))
         roundabout_times.append(calculate_sim_time(cars_out_rnd))
 
-    make_chart(intersection_times, roundabout_times)
+    plot_graphs(intersection_times, roundabout_times)
 
 
 def calculate_sim_time(cars_out_list):
@@ -108,13 +108,3 @@ def sim_summary(cars_out_list, name=None, extended_summary=False):
         )
     )
     # print("Ile aut razem (sym + w czasie rozgrzewania): {}".format(len(cars_list)))
-
-
-def make_chart(int_times, rnd_times):
-    plt.plot(int_times, "P", label="intersection", alpha=0.6)
-    plt.plot(rnd_times, "ro", label="roundabout", alpha=0.6)
-    plt.legend()
-    plt.xlabel("data sets")
-    plt.ylabel("time")
-    plt.grid()
-    plt.show()

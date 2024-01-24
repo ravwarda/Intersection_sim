@@ -14,13 +14,13 @@ def generate_parmeters_file(filename="parameters.json", step=1):
         return (x + alpha) / (2 * alpha) * (max - min) + min
 
     traffic_min = 2
-    traffic_max = 10
+    traffic_max = 16
 
     segment_min = 0.5
-    segment_max = 2
+    segment_max = 1.2
 
     percentage_min = 0.25
-    percentage_max = 0.4
+    percentage_max = 0.45
 
     traffic_params = []
     segment_params = []

@@ -8,7 +8,7 @@ def execute_simulation():
     # średnia dla rozkładu lognormalnego określająca czas przejechania przez segment skrzyżowania
     segment_drive_time_distribution = 1
     # ile procent aut przyjeżdża z jednego kierunku drogi głównej
-    percentage_cars_on_main_road = 0.45
+    percentage_cars_on_main_road = 0.3
 
     # ---Stałe parametry początkowe dla wszystkich symulacji:
     # czas trwania symulacji [s]
@@ -21,7 +21,7 @@ def execute_simulation():
     starting_drive_time_distribution = 0.8
 
     # czy wywołać pojedynczą sumulację dla danych powyżej czy dla wszystkich danych z pliku
-    use_file = False
+    use_file = True
 
     # ------------------------------
 
