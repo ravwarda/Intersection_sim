@@ -5,17 +5,19 @@ from event import Event
 from intersection import Intersection
 from simulation import Simulation
 from roundabout import rondo_run_sim
-from generate_parameters import *
-from plot_graphs import plot_graphs
+from generate_parameters import UseFile
+from plot_graphs import Graphs
 
 
 def simulations_from_file(
     parameters, generate_new_file=False, filename="parameters.json"
 ):
     """wielokrotnie wywołuje symulacje dla wszystkich zestawów parametrów z pliku"""
+    file = UseFile()
+
     if (not os.path.isfile(filename)) or generate_new_file:
-        generate_parmeters_file(filename)
-    parameters_list = get_parameters_from_file(filename)
+        file.generate_parmeters_file(filename)
+    parameters_list = file.get_parameters_from_file(filename)
     intersection_times = []
     roundabout_times = []
     for parmeters_dict in parameters_list:
@@ -28,7 +30,23 @@ def simulations_from_file(
         intersection_times.append(calculate_sim_time(cars_out_intersection))
         roundabout_times.append(calculate_sim_time(cars_out_rnd))
 
-    plot_graphs(intersection_times, roundabout_times)
+    # show_times_for_all_parameters(intersection_times, roundabout_times, parameters_list)
+
+    Graphs(file.get_params()).plot_graphs(intersection_times, roundabout_times)
+
+
+def show_times_for_all_parameters(intersection_times, roundabout_times, parameters_list):
+    print("---------------------")
+    print("Intersection and roundabout times")
+    print("---")
+
+    for index, parmeters_dict in enumerate(parameters_list):
+        print(f"intersection: {intersection_times[index]:.3f}, ", end="")
+        print(f"roundabout: {roundabout_times[index]:.3f}, ", end="")
+        print(f"dla parametrów: traffic: {parmeters_dict["traffic"]}, ", end="") 
+        print(f"segment: {parmeters_dict["segment"]}, ", end=" ")
+        print(f"percentage: {parmeters_dict["percentage"]}")
+    print("---------------------")
 
 
 def calculate_sim_time(cars_out_list):
