@@ -4,7 +4,7 @@ import numpy as np
 from event import Event
 from intersection import Intersection
 from simulation import Simulation
-from roundabout import rondo_run_sim
+from roundabout import Roundabout
 from generate_parameters import UseFile
 from plot_graphs import Graphs
 
@@ -43,14 +43,14 @@ def show_times_for_all_parameters(intersection_times, roundabout_times, paramete
     for index, parmeters_dict in enumerate(parameters_list):
         print(f"intersection: {intersection_times[index]:.3f}, ", end="")
         print(f"roundabout: {roundabout_times[index]:.3f}, ", end="")
-        print(f"dla parametrów: traffic: {parmeters_dict["traffic"]}, ", end="") 
-        print(f"segment: {parmeters_dict["segment"]}, ", end=" ")
-        print(f"percentage: {parmeters_dict["percentage"]}")
+        print(f"dla parametrów: traffic: {parmeters_dict['traffic']}, ", end="")
+        print(f"segment: {parmeters_dict['segment']}, ", end=" ")
+        print(f"percentage: {parmeters_dict['percentage']}")
     print("---------------------")
 
 
 def calculate_sim_time(cars_out_list):
-    """zlicza średni czasu przejazdu dla aut w symulacji"""
+    """zlicza średni czas przejazdu dla aut w symulacji"""
     if len(cars_out_list[0]) == 0:
         return -10
 
@@ -91,11 +91,9 @@ def sim_call(parameters, summary=False):
     for car in cars_list:
         events_list.append(Event(car))
 
-    cars_out_intersection = Intersection(events_list).run_sim(
-        sim_time, warm_up_time, describe=False
-    )
+    cars_out_intersection = Intersection(events_list).run_sim(sim_time, warm_up_time, describe=False)
 
-    cars_out_rnd = rondo_run_sim(sim.get_cars_list(), sim_time, warm_up_time)
+    cars_out_rnd = Roundabout().run_sim(sim.get_cars_list(), sim_time, warm_up_time)
 
     if summary:
         sim_summary(cars_out_intersection, "Intersection", extended_summary=True)
