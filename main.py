@@ -9,6 +9,9 @@ def execute_simulation(use_file=False, traffic_intensity = 2, segment_drive_time
     # segment_drive_time_distribution - średnia dla rozkładu lognormalnego określająca czas przejechania przez segment skrzyżowania
     # percentage_cars_on_main_road - ile procent aut przyjeżdża z jednego kierunku drogi głównej
 
+    if percentage_cars_on_main_road <= 0 or percentage_cars_on_main_road > 0.5:
+        print("Niewłaściwa wartość parametru ilości samochodów na grodze głównej")
+        return 0
 
     # ---Stałe parametry początkowe dla wszystkich symulacji:
     # czas trwania symulacji [s]
@@ -58,7 +61,7 @@ def menu():
     sd_var.set(1)
     ent_sd = Entry(root, textvariable=sd_var)
 
-    lbl_pc = Label(root, text="Ilość samochodów na drodze główniej (wartość: (0;0.5])")
+    lbl_pc = Label(root, text="Ułamek samochodów na drodze główniej (wartość: (0;0.5])")
     pc_var = DoubleVar()
     pc_var.set(0.3)
     ent_pc = Entry(root, textvariable=pc_var)
