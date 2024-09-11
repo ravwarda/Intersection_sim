@@ -1,7 +1,9 @@
 from simulation_functions import *
+from tkinter import *
+from tkinter.ttk import *
 
 
-def execute_simulation():
+def execute_simulation(use_file=False):
     # ---Zmienne parametry pomiędzy symulacjami:
     # natężenie ilości aut na całym skrzyżowaniu (czym mniejsza wartosc tym wiecej aut)
     traffic_intensity = 2
@@ -23,9 +25,6 @@ def execute_simulation():
             starting_drive_time_distribution * segment_drive_time_distribution
     )
 
-    # czy wywołać pojedynczą sumulację dla danych powyżej czy dla wszystkich danych z pliku
-    use_file = True
-
     # ------------------------------
 
     parameters = [
@@ -41,8 +40,45 @@ def execute_simulation():
     if use_file:
         simulations_from_file(parameters, generate_new_file=True)
     else:
-        sim_call(parameters, summary=True)
+        cars_out_intersection, cars_out_rnd = Simulation(*parameters).sim_call()
+        sim_summary(cars_out_intersection)
+        sim_summary(cars_out_rnd)
+
+
+def menu():
+    root = Tk()
+    # btn_ssim = Button(root, text="Przeprowadź symulację", command=execute_simulation)
+    # btn_summary = Button(root, text="Pokaż podsumowanie")
+    # btn_save = Button(root, text="Zapisz przebieg symulacji")
+    # btn_load = Button(root, text="Wczytaj przebieg symulacji")
+    #
+    # btn_ssim.grid(row=0, column=0, pady=3)
+    # btn_summary.grid(row=1, column=0, pady=3)
+    # btn_save.grid(row=2, column=0, pady=3)
+    # btn_load.grid(row=3, column=0, pady=3)
+
+    var = StringVar()
+
+    lbl_ti = Label(root, text="Średni czas pomiędzy przyjazdami samochodów:")
+    ent_ti = Entry(root)
+    lbl_sd = Label(root, text="Średni czas przejechania przez segment:")
+    ent_sd = Entry(root)
+    lbl_pc = Label(root, text="Ilość samochodów na drodze główniej (wartość: (0;0.5])")
+    ent_pc = Entry(root)
+    chk_fi = Checkbutton(root, text="Użyj pliku z wartościami parametrów", variable=var)
+
+    lbl_ti.grid(row=0, column=0, pady=3)
+    ent_ti.grid(row=1, column=0, pady=3)
+    lbl_sd.grid(row=2, column=0, pady=3)
+    ent_sd.grid(row=3, column=0, pady=3)
+    lbl_pc.grid(row=4, column=0, pady=3)
+    ent_pc.grid(row=5, column=0, pady=3)
+    chk_fi.grid(row=6, column=0, pady=5)
+
+
+    root.mainloop()
 
 
 if __name__ == "__main__":
-    execute_simulation()
+    # execute_simulation()
+    menu()
