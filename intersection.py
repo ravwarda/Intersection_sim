@@ -1,8 +1,8 @@
 from event import Event
 
 
-# funkcja zwracająca indeks kolejki, do której należy auto
 def car_direction(car, destination=False):
+    """Funkcja zwracająca indeks kolejki, do której należy auto"""
     if destination:
         route = car.destination_direction
     else:
@@ -28,8 +28,8 @@ class Intersection:
             self.segments.append(self.Segment())
         self.events = events
 
-    # funkcja sprawdzająca, czy segmenty, przez które musi przejechać samochód są wolne
     def segments_free(self, car, occupy=False):
+        """Funkcja sprawdzająca, czy segmenty, przez które musi przejechać samochód są wolne"""
         entry = car_direction(car)
         destination = car_direction(car, destination=True)
         while entry != destination:
@@ -43,8 +43,8 @@ class Intersection:
                 entry += 1
         return True
 
-    # funkcja sprawdzająca, który samochód powinien wjechać na skrzyżowanie
     def check_priority(self, cars):
+        """Funkcja sprawdzająca, który samochód powinien wjechać na skrzyżowanie"""
         def check_result():
             if len(result_cars) == 1:
                 return result_cars[0]

@@ -2,6 +2,9 @@ import numpy as np
 import random
 import copy
 from car import Car
+from intersection import Intersection
+from roundabout import Roundabout
+from event import Event
 
 
 class Simulation:
@@ -144,3 +147,19 @@ class Simulation:
             raise Exception("Can't get cars_list if it is empty")
 
         return copy.deepcopy(self.cars_list)
+
+    def sim_call(self):
+        """Pojedyczne wywołanie symulacji dla jednego zestawu parametrów"""
+
+        self.generate_cars_list()
+        cars_list = self.get_cars_list()
+
+        events_list = []
+        for car in cars_list:
+            events_list.append(Event(car))
+
+        cars_out_intersection = Intersection(events_list).run_sim(self.sim_time, self.warm_up_time, describe=False)
+
+        cars_out_rnd = Roundabout().run_sim(self.get_cars_list(), self.sim_time, self.warm_up_time)
+
+        return cars_out_intersection, cars_out_rnd

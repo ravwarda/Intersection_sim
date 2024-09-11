@@ -1,10 +1,10 @@
 import os
 import numpy as np
 
-from event import Event
-from intersection import Intersection
+# from event import Event
+# from intersection import Intersection
 from simulation import Simulation
-from roundabout import rondo_run_sim
+# from roundabout import Roundabout
 from generate_parameters import UseFile
 from plot_graphs import Graphs
 
@@ -12,7 +12,7 @@ from plot_graphs import Graphs
 def simulations_from_file(
     parameters, generate_new_file=False, filename="parameters.json"
 ):
-    """wielokrotnie wywołuje symulacje dla wszystkich zestawów parametrów z pliku"""
+    """Wielokrotnie wywołuje symulacje dla wszystkich zestawów parametrów z pliku"""
     file = UseFile()
 
     if (not os.path.isfile(filename)) or generate_new_file:
@@ -25,7 +25,7 @@ def simulations_from_file(
         parameters[3] = parmeters_dict["segment"]
         parameters[4] = parmeters_dict["percentage"]
 
-        cars_out_intersection, cars_out_rnd = sim_call(parameters)
+        cars_out_intersection, cars_out_rnd = Simulation(*parameters).sim_call()
 
         intersection_times.append(calculate_sim_time(cars_out_intersection))
         roundabout_times.append(calculate_sim_time(cars_out_rnd))
@@ -43,14 +43,14 @@ def show_times_for_all_parameters(intersection_times, roundabout_times, paramete
     for index, parmeters_dict in enumerate(parameters_list):
         print(f"intersection: {intersection_times[index]:.3f}, ", end="")
         print(f"roundabout: {roundabout_times[index]:.3f}, ", end="")
-        print(f"dla parametrów: traffic: {parmeters_dict["traffic"]}, ", end="") 
-        print(f"segment: {parmeters_dict["segment"]}, ", end=" ")
-        print(f"percentage: {parmeters_dict["percentage"]}")
+        print(f"dla parametrów: traffic: {parmeters_dict['traffic']}, ", end="")
+        print(f"segment: {parmeters_dict['segment']}, ", end=" ")
+        print(f"percentage: {parmeters_dict['percentage']}")
     print("---------------------")
 
 
 def calculate_sim_time(cars_out_list):
-    """zlicza średni czasu przejazdu dla aut w symulacji"""
+    """Zlicza średni czas przejazdu dla aut w symulacji"""
     if len(cars_out_list[0]) == 0:
         return -10
 
@@ -62,50 +62,48 @@ def calculate_sim_time(cars_out_list):
     return np.average(times_in_sim)
 
 
-def sim_call(parameters, summary=False):
-    """pojedyczne wywołanie symulacji dla jednego zestawu parametrów"""
-    (
-        sim_time,
-        warm_up_time,
-        traffic_intensity,
-        segment_drive_time_distribution,
-        percentage_cars_on_main_road,
-        force_intensity,
-        starting_drive_time_distribution,
-    ) = parameters
-
-    sim = Simulation(
-        sim_time,
-        warm_up_time,
-        traffic_intensity,
-        segment_drive_time_distribution,
-        percentage_cars_on_main_road,
-        force_intensity,
-        starting_drive_time_distribution,
-    )
-
-    sim.generate_cars_list()
-    cars_list = sim.get_cars_list()
-
-    events_list = []
-    for car in cars_list:
-        events_list.append(Event(car))
-
-    cars_out_intersection = Intersection(events_list).run_sim(
-        sim_time, warm_up_time, describe=False
-    )
-
-    cars_out_rnd = rondo_run_sim(sim.get_cars_list(), sim_time, warm_up_time)
-
-    if summary:
-        sim_summary(cars_out_intersection, "Intersection", extended_summary=True)
-        sim_summary(cars_out_rnd, "Roundabout", extended_summary=True)
-
-    return cars_out_intersection, cars_out_rnd
+# def sim_call(parameters, summary=False):
+#     """pojedyczne wywołanie symulacji dla jednego zestawu parametrów"""
+#     (
+#         sim_time,
+#         warm_up_time,
+#         traffic_intensity,
+#         segment_drive_time_distribution,
+#         percentage_cars_on_main_road,
+#         force_intensity,
+#         starting_drive_time_distribution,
+#     ) = parameters
+#
+#     sim = Simulation(
+#         sim_time,
+#         warm_up_time,
+#         traffic_intensity,
+#         segment_drive_time_distribution,
+#         percentage_cars_on_main_road,
+#         force_intensity,
+#         starting_drive_time_distribution,
+#     )
+#
+#     sim.generate_cars_list()
+#     cars_list = sim.get_cars_list()
+#
+#     events_list = []
+#     for car in cars_list:
+#         events_list.append(Event(car))
+#
+#     cars_out_intersection = Intersection(events_list).run_sim(sim_time, warm_up_time, describe=False)
+#
+#     cars_out_rnd = Roundabout().run_sim(sim.get_cars_list(), sim_time, warm_up_time)
+#
+#     if summary:
+#         sim_summary(cars_out_intersection, "Intersection", extended_summary=True)
+#         sim_summary(cars_out_rnd, "Roundabout", extended_summary=True)
+#
+#     return cars_out_intersection, cars_out_rnd
 
 
 def sim_summary(cars_out_list, name=None, extended_summary=False):
-    """wypisanie przebiegu symulacji"""
+    """Wypisanie przebiegu symulacji"""
     print("_" * 80)
     print(f"\n---{name}---\n")
     for i in range(0, len(cars_out_list[0])):
